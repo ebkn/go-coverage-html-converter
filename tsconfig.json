@@ -2,9 +2,15 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es2020",
-    "module": "es2020",
+    "module": "commonjs",
+    "types": [
+      "node"
+    ],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

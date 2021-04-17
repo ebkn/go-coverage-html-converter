@@ -4,6 +4,6 @@ services:
   app:
     build: .
     volumes:
-      - ./cover.html:/app/cover.html
-    command: ["node", "dist/index.js"]
-
+      - ./test/cover.html:/app/cover.html
+      - ./test/files.txt:/app/files.txt
+    command: node dist/index.js --html /app/cover.html --fileList /app/files.txt

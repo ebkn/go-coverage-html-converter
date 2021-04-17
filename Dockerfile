@@ -13,4 +13,4 @@ COPY src /app/src
 
 RUN npm run build
 
-CMD ["node", "./dist/index.js"]
+CMD ["npm", "start"]

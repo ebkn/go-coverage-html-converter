@@ -117,4 +117,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-cover.html
+test/cover.html
+test/files.txt
