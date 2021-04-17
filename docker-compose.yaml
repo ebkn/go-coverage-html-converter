@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./cover.html:/app/cover.html
+    command: ["node", "dist/index.js"]
+
