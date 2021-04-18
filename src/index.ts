@@ -33,15 +33,6 @@ const readFile = async (filepath: string): Promise<string> => {
     value: string,
     coverage: number, // float
   }[] = [];
-  // each option tags should be like
-  //   <option value="file0">app/main.go (28.6%)</option>
-  // results will be
-  // {
-  //   "app/main.go": {
-  //     "value": "file0",
-  //     "coverage": 28.6
-  //   }
-  // }
   const optionsTags = dom.window.document.querySelectorAll('#topbar #nav option');
   optionsTags.forEach((optionTag: Node) => {
     const txt = optionTag.textContent;
