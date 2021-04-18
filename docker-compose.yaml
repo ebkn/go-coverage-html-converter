@@ -5,5 +5,4 @@ services:
     build: .
     volumes:
       - ./test/cover.html:/app/cover.html
-      - ./test/files.txt:/app/files.txt
-    command: node dist/index.js --html /app/cover.html --fileList /app/files.txt
+    command: node dist/index.js --html /app/cover.html

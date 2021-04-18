@@ -3,8 +3,7 @@ const { JSDOM } = require('jsdom');
 const { promises: fs } = require('fs');
 
 const argv = yargs(process.argv.slice(2)).options({
-  html: { type: 'string', demandOption: true },
-  fileList: { type: 'string', demandOption: true }, // TODO: read from stdin
+  html: { type: 'string', default: '/app/cover.html' },
 }).argv;
 
 const readFile = async (filepath: string): Promise<string> => {
@@ -20,15 +19,6 @@ const readFile = async (filepath: string): Promise<string> => {
   const htmlString = await readFile(argv.html);
   if (htmlString === '') process.exit(1);
 
-  const fileListString = await readFile(argv.fileList);
-  if (fileListString === '') process.exit(1);
-
-  const fileList = fileListString.split('\n').filter((el) => el !== '');
-  if (fileList.length === 0) {
-    console.error(`no filenames found in fileList.`);
-    process.exit(1);
-  }
-
   // parse dom
   let dom: typeof JSDOM;
   try {
@@ -39,11 +29,10 @@ const readFile = async (filepath: string): Promise<string> => {
   }
 
   const result: {
-    [filename: string]: {
-      value: string,
-      coverage: number, // float
-    },
-  } = {};
+    filename: string,
+    value: string,
+    coverage: number, // float
+  }[] = [];
   // each option tags should be like
   //   <option value="file0">app/main.go (28.6%)</option>
   // results will be
@@ -73,10 +62,11 @@ const readFile = async (filepath: string): Promise<string> => {
       return;
     }
 
-    result[filename] = {
+    result.push({
+      filename,
       value,
       coverage: parsedPercentage,
-    };
+    });
   });
 
   console.log(JSON.stringify(result));
