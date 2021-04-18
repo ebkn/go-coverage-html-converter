@@ -1,6 +1,6 @@
-# Convert from coverage html to json for Go
+# Go Coverage HTML converter
 
-Convert coverage profile html to json for Go.
+Convert from coverage profile html to json for Go.
 
 ## Features
 - [x] filename
@@ -11,10 +11,10 @@ Convert coverage profile html to json for Go.
 ## Usage
 
 ```sh
-$ docker build -t go-coverage-html-to-json:v0.0.1 .
+$ docker build -t go-coverage-html-converter:v0.0.1 .
 $ docker run \
     -v $(pwd)/test/cover.html:/app/cover.html \
-    go-coverage-html-to-json:<tag> | jq
+    go-coverage-html-converter:v0.0.1 | jq
 [
   {
     "filename": "app/main.go",
